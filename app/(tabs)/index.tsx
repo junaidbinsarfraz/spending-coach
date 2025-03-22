@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity } from "react-native";
 import { useTheme } from "@/context/ThemeContext";
 import { Stack } from "expo-router";
 import Header from "@/components/Header";
 import { shadow } from "@/constants/Colors";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { expenseData } from "@/constants/expenses";
+import TransactionCard from "@/components/TransactionCard";
+import TransactionList from "@/components/TransactionList";
 
 const HomePage = () => {
   const colors = useTheme();
@@ -20,21 +15,20 @@ const HomePage = () => {
   const [expenses, setExpenses] = useState(expenseData);
 
   const totalAmount = 500;
+
   // Function to handle the Add button press
   const handleAddTransaction = () => {
     const newTransaction = {
       category: "Takeout",
       amount: 50,
-      color: "black",
-      date: new Date().toISOString().split("T")[0], // Format date as "YYYY-MM-DD"
+      color: 'black',
+      date: new Date().toISOString().split('T')[0], // Format date as "YYYY-MM-DD"
     };
 
     // Trigger Spending Coach Alert
     Alert.alert(
       "Spending Coach",
-      `You spent $${
-        totalAmount - budget
-      } this week. Only $${budget} is left. Cool or cut back $50?`,
+      `You spent $${totalAmount - budget} this week. Only $${budget} is left. Cool or cut back?`,
       [
         {
           text: "Cut Back",
@@ -66,36 +60,10 @@ const HomePage = () => {
       fontWeight: "500",
       color: colors.light.mutedText,
     },
-    cardContainer: {
-      flexDirection: "row",
-    },
-    card: {
-      width: 200,
-      height: 150,
-      borderRadius: 15,
-      backgroundColor: colors.light.secondary,
-      justifyContent: "center",
-      alignItems: "center",
-      marginRight: 16,
-      padding: 16,
-      ...shadow.heavy,
-    },
-    cardText: {
-      fontSize: 18,
-      fontWeight: "bold",
-      color: colors.light.background,
-      textAlign: "center",
-    },
     budget: {
       fontSize: 68,
       fontWeight: "bold",
       color: colors.light.text,
-      marginBottom: 20,
-    },
-    cardAmount: {
-      fontSize: 48,
-      fontWeight: "bold",
-      color: colors.light.primary,
       marginBottom: 20,
     },
     text: {
@@ -128,12 +96,9 @@ const HomePage = () => {
         <View style={styles.topContainer}>
           <View>
             <Text style={styles.title}>This week's budget</Text>
-            <Text style={styles.budget}>${budget}<Text style={{fontSize: 20}}>/ </Text><Text style={{fontSize: 14}}>$500</Text></Text>
+            <Text style={styles.budget}>${budget}</Text>
           </View>
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={handleAddTransaction}
-          >
+          <TouchableOpacity style={styles.addButton} onPress={handleAddTransaction}>
             <FontAwesome6 name="add" size={24} color="black" />
           </TouchableOpacity>
         </View>
@@ -143,12 +108,16 @@ const HomePage = () => {
         {/* Horizontal Scrollable Cards */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {expenses.map((expense, index) => (
-            <View key={index} style={styles.card}>
-              <Text style={styles.cardAmount}>${expense.amount}</Text>
-              <Text style={styles.cardText}>{expense.category}</Text>
-            </View>
+            <TransactionCard
+              key={index}
+              amount={expense.amount}
+              category={expense.category}
+            />
           ))}
         </ScrollView>
+
+        {/* Transaction List */}
+        {/* <TransactionList transactions={expenses} /> */}
       </View>
     </>
   );

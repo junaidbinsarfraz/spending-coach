@@ -1,4 +1,28 @@
-# Welcome to your Expo app 👋
+# Welcome to Spending Coach 👋
+
+## Screenshots
+
+Here are some screenshots of the app in action:
+
+<div align="center">
+  <img src="assets/screenshots/s1.jpg" alt="Home Screen" width="200" />
+  <img src="assets/screenshots/s2.jpg" alt="Expense Tracking" width="200" />
+  <img src="assets/screenshots/s3.jpg" alt="Budget Overview" width="200" />
+  <img src="assets/screenshots/s4.jpg" alt="Spending Insights" width="200" />
+  <img src="assets/screenshots/s5.jpg" alt="Transaction History" width="200" />
+</div>
+
+## Screenshots
+
+Here are some screenshots of the app in action:
+
+<div align="center">
+  <img src="assets/screenshots/s1.jpg" alt="Home Screen" width="200" />
+  <img src="assets/screenshots/s2.jpg" alt="Expense Tracking" width="200" />
+  <img src="assets/screenshots/s3.jpg" alt="Budget Overview" width="200" />
+  <img src="assets/screenshots/s4.jpg" alt="Spending Insights" width="200" />
+  <img src="assets/screenshots/s5.jpg" alt="Transaction History" width="200" />
+</div>
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
